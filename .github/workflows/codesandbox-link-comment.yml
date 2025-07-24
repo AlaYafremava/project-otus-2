@@ -1,0 +1,20 @@
+name: Add codesandbox link
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  codesandbox-comment:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+        pull-requests: write
+        repository-projects: write
+    steps:
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            Sandbox: https://githubbox.com/${{ github.repository }}/tree/${{ github.head_ref }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message-id: codesandbox-link
