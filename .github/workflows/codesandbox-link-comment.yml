@@ -1,16 +1,20 @@
 name: Add codesandbox link
+
 on:
   pull_request:
+    types: [opened]
+  pull_request_target:
     types: [opened]
 
 jobs:
   codesandbox-comment:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write  # Явно даём права на запись комментариев
     steps:
-      - name: Add comment
-        uses: mshick/add-pr-comment@v2
-        if: github.event.pull_request.head.repo.full_name == github.repository
+      - uses: mshick/add-pr-comment@v2
         with:
           message: |
-            Sandbox: https://githubbox.com/${{ github.repository }}/tree/${{ github.event.pull_request.head.ref }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            Sandbox: https://githubbox.com/${{ github.repository }}/tree/${{ github.head_ref }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}  # Правильное имя параметра
+          message-id: add-pr-comment
