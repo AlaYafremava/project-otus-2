@@ -8,7 +8,7 @@ jobs:
   codesandbox-comment:
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
+        contents: write
     steps:
       - uses: mshick/add-pr-comment@v2
         with:
