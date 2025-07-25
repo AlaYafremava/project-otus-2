@@ -12,6 +12,7 @@ jobs:
     name: Add codesandbox link comment
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       pull-requests: write
     steps:
       - uses: mshick/add-pr-comment@v2
